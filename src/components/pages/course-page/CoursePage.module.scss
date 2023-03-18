@@ -3,54 +3,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.course-container{
-  padding-top: 56px;
-  display: flex;
-  justify-content: space-between;
-  flex-flow: wrap;
-  width: 90%;
-  div{
-    margin-bottom: 12px;
-  }
-}
-
-.card-container{
-  margin-top: 2%;
-  width: fit-content;
-  padding: 5%;
-  display: flex;
-  flex-wrap: wrap;
   justify-content: center;
 }
 
-.card{
-  padding: 1%;
-  height: 480px;
-  width: 360px;
-  margin-bottom: 2%;
-  margin-left: 2%;
+.page-information{
   display: flex;
-  flex-direction: column;
-  .card-title{
-    font-size: 21px;
-    text-align: center;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 3% 0;
+  width: 90%;
+  padding-bottom: 1%;
+  border-bottom: thin solid black;
+  p{
+    font-size: 14px;
+    font-weight: 300;
   }
-  .card-image{
-    width: 320px;
-  }
-  .card-info{
-    padding: 8px 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 10%;
-  }
-  .card-description{
-    word-break: break-all;
-  }
-  .card-button{
-    margin-top: auto;
-  }
+}
+
+.card-course-container{
+  width: fit-content;
+  padding: 5%;
+  display: flex;
+  gap: 2%;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #f3f2f5;
 }

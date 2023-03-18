@@ -1,52 +1,72 @@
-import Navbar from "@/components/common/navbar";
-import styles from './CoursePage.module.scss'
-import {CircularProgress, Typography} from "@mui/material";
-import {useQuery} from "react-query";
-import {CoursersAPI} from "@/api/CoursesApi/CoursersAPI";
-import {Card, Chip, Rating, Alert, Button} from "@mui/material";
+import React, { useState } from 'react';
+import { useQuery } from 'react-query';
+import { CircularProgress, Typography } from '@mui/material';
+import { Alert } from '@mui/material';
+import { Pagination } from '@mui/material';
+
+import { CoursersAPI } from '@/api/CoursesApi/CoursersAPI';
+import CardCourse from '@/components/common/card-course';
+import Navbar from '@/components/common/navbar';
+
+import styles from './CoursePage.module.scss';
 const CoursePage = () => {
-    const courseId = '352be3c6-848b-4c19-9e7d-54fe68fef183';
-    const {isLoading: isLoadingCourses, isError: isErrorCourses, data: courses} = useQuery(
-        ['courses'],
-        () => CoursersAPI.getCourses(),
-        {
-            refetchOnWindowFocus: false,
-            retry: false,
-        },
-    )
-    return(
-        <div className={styles['page-container']}>
-            <Navbar/>
-            {isLoadingCourses && <CircularProgress />}
-            {isErrorCourses &&
-                <Alert variant="filled" severity="error">
-                Finding problems with uploading data - Check later!
-                </Alert>}
-            <div className={styles['card-container']}>
-                {courses?.courses.map((course, index) => {
-                    return(
-                        <Card key={index} className={styles['card']}>
-                            <img src={course.previewImageLink + '/cover.webp'} />
-                            <Typography variant="subtitle1" className={styles['card-title']}>
-                                {course.title}
-                            </Typography>
-                            <div className={styles['card-info']}>
-                                <Chip label={course.tags} color="primary" variant="outlined"/>
-                                <Rating name="Course Rating" value={course.rating} readOnly />
-                            </div>
-                            <Typography variant="body1" className={styles['card-description']}>
-                                {course.description}
-                            </Typography>
-                            <Typography variant="body2">
-                                {course.meta.skills}
-                            </Typography>
-                            <Button variant="text" className={styles['card-button']}>Explore Course</Button>
-                        </Card>
-                    )
-                })}
+  const [pagesCount, setPagesCount] = useState(0);
+  const {
+    isLoading: isLoadingCourses,
+    isError: isErrorCourses,
+    data: courses,
+  } = useQuery(['courses'], () => CoursersAPI.getCourses(), { retry: false });
+  const coursesPerElement = 10;
+  const elementsVisited = pagesCount * coursesPerElement;
+  const pagesNumber = Math.ceil(courses?.courses.length / coursesPerElement);
+  const handleChangeElement = (
+    event: React.ChangeEvent<unknown>,
+    value: number,
+  ) => {
+    setPagesCount(value - 1);
+  };
+  const coursesSliced = courses?.courses
+    .slice(elementsVisited, elementsVisited + coursesPerElement)
+    .map((course, index) => (
+      <CardCourse
+        key={index}
+        title={course.title}
+        description={course.description}
+        image={course.previewImageLink}
+        rating={course.rating}
+        skills={course.meta.skills}
+        tags={course.tags}
+      />
+    ));
+  return (
+    <div className={styles['page-container']}>
+      <Navbar />
+      {isLoadingCourses && <CircularProgress />}
+      {isErrorCourses ? (
+        <Alert variant="filled" severity="error">
+          Finding problems with uploading data - Check later!
+        </Alert>
+      ) : (
+        !isLoadingCourses && (
+          <div className={styles['card-course-container']}>
+            <div className={styles['page-information']}>
+              <Typography variant={'h6'}>
+                Courses
+                <p>{courses?.courses.length} results in Study Lounge</p>
+              </Typography>
+              <Pagination
+                count={pagesNumber}
+                color="primary"
+                size={'small'}
+                onChange={handleChangeElement}
+              />
             </div>
-        </div>
-    )
-}
+            {coursesSliced}
+          </div>
+        )
+      )}
+    </div>
+  );
+};
 
 export default CoursePage;
