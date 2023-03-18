@@ -1,0 +1,46 @@
+.page-container{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 56px;
+}
+
+.page-information{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 3% 0;
+  width: 90%;
+  padding-bottom: 1%;
+  border-bottom: thin solid black;
+  p{
+    font-size: 14px;
+    font-weight: 300;
+  }
+}
+
+.link{
+  margin: 0;
+}
+
+.card-course-container{
+  width: fit-content;
+  padding: 5%;
+  display: flex;
+  gap: 2%;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #f3f2f5;
+}
+
+@media screen and (max-width: 425px){
+  .page-information{
+    flex-direction: column;
+    align-items: center;
+    h6{
+      text-align: center;
+    }
+  }
+}

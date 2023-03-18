@@ -1,6 +1,6 @@
 .card {
   display: flex;
-  position: relative;
+  box-sizing: border-box;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -56,20 +56,51 @@
   text-align: center;
 }
 
-@media screen and (max-width: 768px){
-  .skills{
-    display: none;
-  }
-  .button{
-    display: none;
-  }
-  .card{
-    height: fit-content;
-    width: 90%;
-    padding-bottom: 24px;
-  }
-  .description{
-    padding: 8px;
-  }
+.chip-mobile{
+  display: none;
+}
 
+.rating-mobile{
+  display: none;
+}
+
+@media screen and (max-width: 768px){
+  .card{
+    width: 240px;
+    height: 280px;
+    justify-content: flex-start;
+    .skills{
+      display: none;
+    }
+    .button{
+      display: none;
+    }
+    .image{
+      width: 240px;
+      height: 100px;
+      margin-bottom: 8px;
+    }
+    .description{
+      font-size: 11px;
+    }
+    .title{
+      font-size: 16px;
+    }
+
+    .chip-mobile{
+      display: flex;
+    }
+
+    .rating-mobile{
+      display: flex;
+    }
+
+    .chip-desktop{
+      display: none;
+    }
+
+    .rating-desktop{
+      display: none;
+    }
+  }
 }
