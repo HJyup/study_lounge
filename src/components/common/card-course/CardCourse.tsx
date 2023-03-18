@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, Chip, Rating, Typography } from '@mui/material';
+import { Card, Chip, Rating, Typography } from '@mui/material';
 import Link from 'next/link';
 
 import styles from './Card.module.scss';
@@ -68,9 +68,6 @@ const CardCourse: React.FC<CardCourseProps> = ({
             <p key={index}>{skill}</p>
           ))}
         </Typography>
-        <Button variant="text" className={styles['button']}>
-          Explore Course
-        </Button>
       </Card>
     </Link>
   );

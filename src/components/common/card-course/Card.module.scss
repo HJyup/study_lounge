@@ -2,7 +2,6 @@
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 520px;
   width: 360px;
@@ -44,11 +43,6 @@
   padding: 3%;
 }
 
-.button{
-  margin-top: auto;
-  margin-bottom: 8px;
-}
-
 .skills{
   font-size: 14px;
   font-weight: 200;
@@ -64,11 +58,10 @@
   display: none;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 785px){
   .card{
     width: 240px;
     height: 280px;
-    justify-content: flex-start;
     .skills{
       display: none;
     }
