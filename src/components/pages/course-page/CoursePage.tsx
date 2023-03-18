@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import { TimelapseOutlined } from '@mui/icons-material';
 import { Alert, CircularProgress } from '@mui/material';
 import { useRouter } from 'next/router';
 
 import { CoursersAPI } from '@/api/CoursesApi/CoursersAPI';
+import ListCourse from '@/components/common/list-course';
+import MediaContentCourse from '@/components/common/media-content-course/MediaContentCourse';
 import Navbar from '@/components/common/navbar';
 
 import styles from './CoursePage.module.scss';
 
 const CoursePage = () => {
+  const [selectedLesson, setSelectedLesson] = useState(0);
   const router = useRouter();
   const id = router.query.courseid as string;
   const { isLoading, isError, data } = useQuery(
@@ -29,12 +31,11 @@ const CoursePage = () => {
         !isLoading && (
           <div className={styles['card-course-container']}>
             <div className={styles['video-container']}>
-              <img
-                src={data?.previewImageLink + '/cover.webp'}
-                className={styles['image']}
-                alt={'Course preview image'}
+              <MediaContentCourse
+                image={data?.lessons[selectedLesson].previewImageLink}
+                title={data?.lessons[selectedLesson].title}
+                order={data?.lessons[selectedLesson].order}
               />
-              {data?.lessons[0].title}
             </div>
             <div className={styles['information-container']}>
               <div className={styles['list-content-title']}>
@@ -42,15 +43,26 @@ const CoursePage = () => {
               </div>
               {data?.lessons
                 .sort((s1, s2) => s1.order - s2.order)
-                .map((lesson, index) => (
-                  <div key={index} className={styles['list-content']}>
-                    <p>{lesson.order + '. ' + lesson.title}</p>
-                    <div className={styles['duration']}>
-                      <TimelapseOutlined color={'disabled'} />
-                      {lesson.duration + 'min'}
-                    </div>
-                  </div>
-                ))}
+                .map((lesson, index) =>
+                  lesson.status === 'unlocked' ? (
+                    <ListCourse
+                      key={index}
+                      className={'list-content'}
+                      order={lesson.order}
+                      title={lesson.title}
+                      duration={lesson.duration}
+                      onClick={() => setSelectedLesson(lesson.order - 1)}
+                    />
+                  ) : (
+                    <ListCourse
+                      key={index}
+                      className={'list-content-locked'}
+                      order={lesson.order}
+                      title={lesson.title}
+                      duration={lesson.duration}
+                    />
+                  ),
+                )}
             </div>
           </div>
         )

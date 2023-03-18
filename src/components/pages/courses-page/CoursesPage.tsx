@@ -62,6 +62,7 @@ const CoursesPage = () => {
                 count={pagesNumber}
                 color="primary"
                 size={'small'}
+                className={styles['pagination']}
                 onChange={handleChangeElement}
               />
             </div>

@@ -11,7 +11,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin: 3% 0;
+  margin: 24px 0;
   width: 90%;
   padding-bottom: 1%;
   border-bottom: thin solid black;
@@ -42,5 +42,8 @@
     h6{
       text-align: center;
     }
+  }
+  .pagination{
+    margin: 8px;
   }
 }

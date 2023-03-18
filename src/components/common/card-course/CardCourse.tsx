@@ -29,45 +29,47 @@ const CardCourse: React.FC<CardCourseProps> = ({
           className={styles['image']}
           alt={'Course preview image'}
         />
-        <Typography variant="subtitle1" className={styles['title']}>
-          {title}
-        </Typography>
-        <div className={styles['info']}>
-          <Chip
-            label={tags}
-            color="primary"
-            variant="outlined"
-            className={styles['chip-desktop']}
-          />
-          <Chip
-            label={tags}
-            color="primary"
-            variant="outlined"
-            size={'small'}
-            className={styles['chip-mobile']}
-          />
-          <Rating
-            name="Course Rating"
-            value={rating}
-            readOnly
-            className={styles['rating-desktop']}
-          />
-          <Rating
-            name="Course Rating"
-            value={rating}
-            readOnly
-            size={'small'}
-            className={styles['rating-mobile']}
-          />
+        <div className={styles['information']}>
+          <Typography variant="subtitle1" className={styles['title']}>
+            {title}
+          </Typography>
+          <div className={styles['tags']}>
+            {/*Desktop Version*/}
+            <Chip
+              label={tags}
+              color="primary"
+              variant="outlined"
+              className={styles['chip-desktop']}
+            />
+            <Rating
+              name="Course Rating"
+              value={rating}
+              readOnly
+              className={styles['rating-desktop']}
+            />
+            {/*Mobile Version*/}
+            <Chip
+              label={tags}
+              color="primary"
+              variant="outlined"
+              size={'small'}
+              className={styles['chip-mobile']}
+            />
+            <Rating
+              name="Course Rating"
+              value={rating}
+              readOnly
+              size={'small'}
+              className={styles['rating-mobile']}
+            />
+          </div>
+          <div className={styles['description']}>{description}</div>
+          <div className={styles['skills']}>
+            {skills?.map((skill, index) => (
+              <p key={index}>{skill}</p>
+            ))}
+          </div>
         </div>
-        <Typography variant="body1" className={styles['description']}>
-          {description}
-        </Typography>
-        <Typography variant="body2" className={styles['skills']}>
-          {skills?.map((skill, index) => (
-            <p key={index}>{skill}</p>
-          ))}
-        </Typography>
       </Card>
     </Link>
   );
