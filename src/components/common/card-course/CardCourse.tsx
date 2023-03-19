@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Chip, Rating, Typography } from '@mui/material';
 import Link from 'next/link';
 
@@ -25,17 +25,25 @@ const CardCourse: React.FC<CardCourseProps> = ({
   skills,
   previewVideo,
 }) => {
+  const [isVideo, setIsVideo] = useState(false);
+  const handlerMouseEnter = () => {
+    if (isVideo) {
+      return <Video source={previewVideo} hasControls={false} />;
+    }
+  };
   return (
     <Link href={`/course/${courseId}`} className={styles['link']}>
-      <Card className={styles['card']}>
+      <Card
+        className={styles['card']}
+        onMouseEnter={() => setIsVideo(true)}
+        onMouseLeave={() => setIsVideo(false)}
+      >
         <img
           src={image + '/cover.webp'}
           className={styles['image']}
           alt={'Course preview image'}
         />
-        <div className={styles['video']}>
-          <Video source={previewVideo} hasControls={false} />
-        </div>
+        <div className={styles['video']}>{handlerMouseEnter()}</div>
         <div className={styles['information']}>
           <Typography variant="subtitle1" className={styles['title']}>
             {title}

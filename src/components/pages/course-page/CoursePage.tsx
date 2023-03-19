@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import { Alert, CircularProgress } from '@mui/material';
+import { Alert, AlertTitle, CircularProgress } from '@mui/material';
 import { useRouter } from 'next/router';
 
 import { CoursersAPI } from '@/api/CoursesApi/CoursersAPI';
@@ -44,6 +44,10 @@ const CoursePage = () => {
               />
             </div>
             <div className={styles['information-container']}>
+              <Alert severity="info" className={styles['alert']}>
+                <AlertTitle>Use Video Shortcuts</AlertTitle>
+                Use (,) and (.) to set video speed.
+              </Alert>
               <div className={styles['list-content-title']}>
                 <p>Course Content</p>
               </div>

@@ -18,6 +18,8 @@ const ListCourse: React.FC<ListCourseProps> = ({
   className,
   ...rest
 }) => {
+  const minutes = Math.floor(duration / 60);
+  const seconds = duration - minutes * 60;
   return (
     <div className={styles[className]} {...rest}>
       <div className={styles['title']}>
@@ -28,7 +30,7 @@ const ListCourse: React.FC<ListCourseProps> = ({
       </div>
       <div className={styles['duration']}>
         <TimelapseOutlined color={'disabled'} fontSize={'small'} />
-        {(duration / 60).toFixed(1) + ' minutes to complete'}
+        {minutes + '.' + seconds + ' minutes to complete'}
       </div>
     </div>
   );

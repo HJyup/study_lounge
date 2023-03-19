@@ -8,9 +8,13 @@
   align-items: stretch;
 }
 
+.alert{
+ margin: 2px;
+}
+
 .card-course-container{
   display: flex;
-  width: 95%;
+  width: 98%;
   .video-container{
     width: 75%;
     padding: 0 8px 8px 8px;
@@ -24,7 +28,7 @@
 .list-content-title{
   display: flex;
   flex-direction: column;
-  padding: 8px;
+  padding: 12px;
   p{
     font-weight: 700;
     font-size: 18px;
