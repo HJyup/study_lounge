@@ -1,15 +1,16 @@
-.list-content{
+.list-content-locked{
   display: flex;
   flex-direction: column;
-  padding: 8px;
+  padding: 12px 8px;
   p{
-    font-size: 16px;
-    font-weight: 400;
-    padding: 1%;
+    display: flex;
+    align-items: center;
+    gap: 3%;
   }
   .title{
     display: flex;
     justify-content: space-between;
+    color: rgb(204, 204, 204);
   }
   .duration{
     display: flex;
@@ -17,22 +18,23 @@
     font-weight: 200;
     font-size: 14px;
     gap: 2%;
+    color: rgb(164, 164, 166);
   }
+}
+
+.list-content{
+  @extend .list-content-locked;
   &:hover{
     background-color: rgba(209,215,221,0.3);
     cursor: pointer;
   }
-}
-
-.list-content-locked{
-  @extend .list-content;
-  &:hover{
-    background-color: white;
-    cursor: default;
+  .title{
+    color: black;
   }
   p{
-    display: flex;
-    align-items: center;
-    gap: 3%;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 1%;
+    color: black;
   }
 }

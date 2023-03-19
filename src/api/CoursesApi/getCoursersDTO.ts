@@ -8,6 +8,7 @@ export interface GetCourseDTO {
   duration: number;
   previewImageLink: string;
   rating: number;
+  lessonsCount: number;
   meta: {
     slug: string;
     skills: string[];
