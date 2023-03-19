@@ -25,7 +25,11 @@ const ListCourse: React.FC<ListCourseProps> = ({
       <div className={styles['title']}>
         <p>{order + '. ' + title}</p>
         {className === 'list-content-locked' && (
-          <LockClockOutlinedIcon color={'disabled'} fontSize={'small'} />
+          <LockClockOutlinedIcon
+            data-cy="LockClockOutlinedIcon"
+            color={'disabled'}
+            fontSize={'small'}
+          />
         )}
       </div>
       <div className={styles['duration']}>

@@ -7,19 +7,27 @@ interface VideoProps {
   source: string;
   hasControls: boolean;
 }
+
 const Video: React.FC<VideoProps> = ({ source, hasControls }) => {
   const [playbackRate, setPlaybackRate] = React.useState(1);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const hls = new Hls();
   const videoEl = React.useRef<HTMLVideoElement>(null);
+
   React.useEffect(() => {
     if (videoEl.current) {
       hls.attachMedia(videoEl.current);
       hls.on(Hls.Events.MEDIA_ATTACHED, () => {
         hls.loadSource(source);
       });
+      const savedTime = localStorage.getItem(source);
+      if (savedTime !== null) {
+        videoEl.current.currentTime = parseFloat(savedTime);
+      }
     }
-  });
-  const handler = e => {
+  }, [hls, source]);
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLVideoElement>) => {
     if (e.key === ',') {
       setPlaybackRate(playbackRate - 0.2);
     } else if (e.key === '.') {
@@ -27,8 +35,16 @@ const Video: React.FC<VideoProps> = ({ source, hasControls }) => {
     }
   };
 
+  const handleTimeUpdate = () => {
+    if (videoEl.current) {
+      localStorage.setItem(source, videoEl.current.currentTime.toString());
+    }
+  };
+
   React.useEffect(() => {
-    videoEl.current.playbackRate = playbackRate;
+    if (videoEl.current) {
+      videoEl.current.playbackRate = playbackRate;
+    }
   }, [playbackRate]);
 
   return (
@@ -38,7 +54,8 @@ const Video: React.FC<VideoProps> = ({ source, hasControls }) => {
           ref={videoEl}
           controls
           className={styles['video']}
-          onKeyPress={e => handler(e)}
+          onKeyPress={handleKeyPress}
+          onTimeUpdate={handleTimeUpdate}
         />
       ) : (
         <video

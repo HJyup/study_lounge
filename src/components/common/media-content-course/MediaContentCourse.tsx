@@ -31,7 +31,6 @@ const MediaContentCourse: React.FC<MediaContentCourseProps> = ({
   return (
     <div className={styles['main-container']}>
       {videoLink && <Video source={videoLink} hasControls={true} />}
-      <div className={styles['video']}></div>
       <p className={styles['title']}>{title}</p>
       <p className={styles['description']}>{courseDescription}</p>
       <div className={styles['course-information']}>

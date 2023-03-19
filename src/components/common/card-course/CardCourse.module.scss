@@ -22,6 +22,7 @@
     }
     .video{
       display: block;
+      height: 223px;
     }
     .title{
       display: none;
@@ -30,14 +31,14 @@
 }
 
 .information{
-  padding: 16px;
+  padding: 8px;
   .title{
     display: flex;
     font-size: 18px;
     font-weight: bold;
     text-align: center;
     justify-content: center;
-    min-height: 36px;
+    min-height: 65px;
   }
   .tags{
     display: flex;
@@ -55,14 +56,6 @@
     margin: 12px;
     font-weight: 200;
   }
-}
-
-.chip-mobile{
-  display: none;
-}
-
-.rating-mobile{
-  display: none;
 }
 
 @media screen and (max-width: 785px){
@@ -91,19 +84,13 @@
       display: none;
     }
   }
-  .chip-mobile{
-    display: flex;
+  .chip{
+    width: 80px;
+    height: 25px;
+    font-size: 8px;
   }
 
-  .rating-mobile{
-    display: flex;
-  }
-
-  .chip-desktop{
-    display: none;
-  }
-
-  .rating-desktop{
-    display: none;
+  .rating{
+    width: 300px;
   }
 }

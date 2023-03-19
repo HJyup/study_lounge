@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Video from '@/components/common/video';
 
 import styles from './CardCourse.module.scss';
-interface CardCourseProps {
+export interface CardCourseProps {
   image: string;
   courseId: string;
   title: string;
@@ -26,7 +26,7 @@ const CardCourse: React.FC<CardCourseProps> = ({
   previewVideo,
 }) => {
   const [isVideo, setIsVideo] = useState(false);
-  const handlerMouseEnter = () => {
+  const handleMouseEnter = () => {
     if (isVideo) {
       return <Video source={previewVideo} hasControls={false} />;
     }
@@ -43,39 +43,23 @@ const CardCourse: React.FC<CardCourseProps> = ({
           className={styles['image']}
           alt={'Course preview image'}
         />
-        <div className={styles['video']}>{handlerMouseEnter()}</div>
+        <div className={styles['video']}>{handleMouseEnter()}</div>
         <div className={styles['information']}>
           <Typography variant="subtitle1" className={styles['title']}>
             {title}
           </Typography>
           <div className={styles['tags']}>
-            {/*Desktop Version*/}
             <Chip
               label={tags}
               color="primary"
               variant="outlined"
-              className={styles['chip-desktop']}
+              className={styles['chip']}
             />
             <Rating
               name="Course Rating"
               value={rating}
               readOnly
-              className={styles['rating-desktop']}
-            />
-            {/*Mobile Version*/}
-            <Chip
-              label={tags}
-              color="primary"
-              variant="outlined"
-              size={'small'}
-              className={styles['chip-mobile']}
-            />
-            <Rating
-              name="Course Rating"
-              value={rating}
-              readOnly
-              size={'small'}
-              className={styles['rating-mobile']}
+              className={styles['rating']}
             />
           </div>
           <div className={styles['description']}>{description}</div>
