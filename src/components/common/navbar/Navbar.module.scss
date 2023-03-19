@@ -1,3 +1,29 @@
 .navbar{
   background-color: rgb(25, 118, 210);
+  .navbar-container{
+    display: flex;
+    justify-content: space-between;
+    .title{
+      font-size: 22px;
+      font-weight: 400;
+    }
+    .subtitle{
+      font-size: 14px;
+      font-weight: 200;
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .navbar {
+    .navbar-container {
+      justify-content: center;
+      .title {
+        font-weight: 200;
+      }
+      .subtitle {
+        display: none;
+      }
+    }
+  }
 }
