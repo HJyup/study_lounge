@@ -21,10 +21,10 @@ const CoursePage = () => {
   );
   return (
     <div className={styles['page-container']}>
-      <Navbar />
+      <Navbar text={data?.title} />
       {isLoading && <CircularProgress />}
       {isError ? (
-        <Alert variant="filled" severity="error">
+        <Alert variant="filled" severity="error" className={'alert-error'}>
           Finding problems with uploading data - Check later!
         </Alert>
       ) : (
@@ -35,8 +35,6 @@ const CoursePage = () => {
                 title={data?.lessons[selectedLesson].title}
                 courseDescription={data?.description}
                 rating={data?.rating}
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
                 launchDate={data?.launchDate}
                 status={data?.status}
                 skills={data?.meta.skills}
@@ -46,7 +44,8 @@ const CoursePage = () => {
             <div className={styles['information-container']}>
               <Alert severity="info" className={styles['alert']}>
                 <AlertTitle>Use Video Shortcuts</AlertTitle>
-                Use (,) and (.) to set video speed.
+                Use (,) and (.) to set video speed. Use Right Click to enter
+                Picture in Picture mode.
               </Alert>
               <div className={styles['list-content-title']}>
                 <p>Course Content</p>
