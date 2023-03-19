@@ -30,6 +30,7 @@
         "react/react-in-jsx-scope": "off",
         "@typescript-eslint/no-empty-function":"off",
         "simple-import-sort/exports": "error",
+        "react-hooks/exhaustive-deps": "off",
         "simple-import-sort/imports": [
             "error",
             {

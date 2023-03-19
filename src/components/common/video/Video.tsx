@@ -10,10 +10,9 @@ interface VideoProps {
 
 const Video: React.FC<VideoProps> = ({ source, hasControls }) => {
   const [playbackRate, setPlaybackRate] = React.useState(1);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const [isError, setIsError] = React.useState(false);
   const hls = new Hls();
   const videoEl = React.useRef<HTMLVideoElement>(null);
-
   React.useEffect(() => {
     if (videoEl.current) {
       hls.attachMedia(videoEl.current);
@@ -25,6 +24,12 @@ const Video: React.FC<VideoProps> = ({ source, hasControls }) => {
         videoEl.current.currentTime = parseFloat(savedTime);
       }
     }
+    hls.on(Hls.Events.ERROR, function (event, data) {
+      const error = data.fatal;
+      if (error) {
+        setIsError(true);
+      }
+    });
   }, [hls, source]);
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLVideoElement>) => {
@@ -41,6 +46,11 @@ const Video: React.FC<VideoProps> = ({ source, hasControls }) => {
     }
   };
 
+  const handleRightCLick = (e: any) => {
+    e.preventDefault();
+    videoEl.current?.requestPictureInPicture();
+  };
+
   React.useEffect(() => {
     if (videoEl.current) {
       videoEl.current.playbackRate = playbackRate;
@@ -49,13 +59,20 @@ const Video: React.FC<VideoProps> = ({ source, hasControls }) => {
 
   return (
     <div className={styles['video']}>
-      {hasControls ? (
+      {isError ? (
+        <img
+          src="https://wisey.app/preview.jpg"
+          alt={'Loading Error'}
+          className={styles['video']}
+        />
+      ) : hasControls ? (
         <video
           ref={videoEl}
           controls
           className={styles['video']}
           onKeyPress={handleKeyPress}
           onTimeUpdate={handleTimeUpdate}
+          onContextMenu={handleRightCLick}
         />
       ) : (
         <video
