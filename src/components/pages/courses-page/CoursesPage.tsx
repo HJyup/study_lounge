@@ -15,7 +15,10 @@ const CoursesPage = () => {
     isLoading: isLoadingCourses,
     isError: isErrorCourses,
     data: courses,
-  } = useQuery(['courses'], () => CoursersAPI.getCourses(), { retry: false });
+  } = useQuery(['courses'], () => CoursersAPI.getCourses(), {
+    retry: false,
+    refetchOnWindowFocus: false,
+  });
   const coursesPerElement = 10;
   const elementsVisited = pagesCount * coursesPerElement;
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -30,7 +33,6 @@ const CoursesPage = () => {
   const coursesSliced = courses?.courses
     .slice(elementsVisited, elementsVisited + coursesPerElement)
     .map((course, index) => (
-      // eslint-disable-next-line react/jsx-key
       <CardCourse
         key={index}
         courseId={course.id}
@@ -40,6 +42,7 @@ const CoursesPage = () => {
         rating={course.rating}
         skills={course.meta.skills}
         tags={course.tags}
+        previewVideo={course.meta.courseVideoPreview.link}
       />
     ));
   return (

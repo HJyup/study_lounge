@@ -1,5 +1,6 @@
 import React from 'react';
 import { TimelapseOutlined } from '@mui/icons-material';
+import LockClockOutlinedIcon from '@mui/icons-material/LockClockOutlined';
 
 import styles from './ListCourse.module.scss';
 
@@ -17,13 +18,17 @@ const ListCourse: React.FC<ListCourseProps> = ({
   className,
   ...rest
 }) => {
-  console.log(className);
   return (
     <div className={styles[className]} {...rest}>
-      <p>{order + '. ' + title}</p>
+      <div className={styles['title']}>
+        <p>{order + '. ' + title}</p>
+        {className === 'list-content-locked' && (
+          <LockClockOutlinedIcon color={'disabled'} fontSize={'small'} />
+        )}
+      </div>
       <div className={styles['duration']}>
-        <TimelapseOutlined color={'disabled'} />
-        {duration + 'min'}
+        <TimelapseOutlined color={'disabled'} fontSize={'small'} />
+        {(duration / 60).toFixed(1) + ' minutes to complete'}
       </div>
     </div>
   );

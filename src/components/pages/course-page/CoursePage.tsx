@@ -17,7 +17,7 @@ const CoursePage = () => {
   const { isLoading, isError, data } = useQuery(
     [['courses'], id],
     () => CoursersAPI.getCourse(id),
-    { retry: false },
+    { retry: false, refetchOnWindowFocus: false },
   );
   return (
     <div className={styles['page-container']}>
@@ -32,9 +32,15 @@ const CoursePage = () => {
           <div className={styles['card-course-container']}>
             <div className={styles['video-container']}>
               <MediaContentCourse
-                image={data?.lessons[selectedLesson].previewImageLink}
                 title={data?.lessons[selectedLesson].title}
-                order={data?.lessons[selectedLesson].order}
+                courseDescription={data?.description}
+                rating={data?.rating}
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                launchDate={data?.launchDate}
+                status={data?.status}
+                skills={data?.meta.skills}
+                videoLink={data?.lessons[selectedLesson].link}
               />
             </div>
             <div className={styles['information-container']}>

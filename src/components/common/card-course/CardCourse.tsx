@@ -2,7 +2,9 @@ import React from 'react';
 import { Card, Chip, Rating, Typography } from '@mui/material';
 import Link from 'next/link';
 
-import styles from './Card.module.scss';
+import Video from '@/components/common/video';
+
+import styles from './CardCourse.module.scss';
 interface CardCourseProps {
   image: string;
   courseId: string;
@@ -11,6 +13,7 @@ interface CardCourseProps {
   rating: number;
   description: string;
   skills: string[];
+  previewVideo: string;
 }
 const CardCourse: React.FC<CardCourseProps> = ({
   image,
@@ -20,6 +23,7 @@ const CardCourse: React.FC<CardCourseProps> = ({
   rating,
   description,
   skills,
+  previewVideo,
 }) => {
   return (
     <Link href={`/course/${courseId}`} className={styles['link']}>
@@ -29,6 +33,9 @@ const CardCourse: React.FC<CardCourseProps> = ({
           className={styles['image']}
           alt={'Course preview image'}
         />
+        <div className={styles['video']}>
+          <Video source={previewVideo} hasControls={false} />
+        </div>
         <div className={styles['information']}>
           <Typography variant="subtitle1" className={styles['title']}>
             {title}
