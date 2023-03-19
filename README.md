@@ -1,38 +1,55 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Study Lounge
+A platform for browsing courses.
+
+## Build With
+
+* Next.js
+* Typescript
+* SCSS
+
+## Additional Packages
+
+Several packages were used to implement the project
+
+* Material UI
+* EsLint
+* Axios
+* Cypress
+* Hls.js
+
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Documentation
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+The website is divided into two main pages: The page for all courses and one specific.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+A page with all the courses `/` will be visible on start-up. This provides basic information 
+about each course. On it, you can choose any course you like . Clicking on a course card will take you to the page for 
+that particular course. 
 
-## Learn More
+The specific course page `/course/{courseid}` gives you the opportunity to view the lessons as well as additional information about the 
+course as a whole. There is also the possibility of closed lessons.
 
-To learn more about Next.js, take a look at the following resources:
+A video function has been developed where you can change the speed of the video you are watching using **`,`** and **`.`**. 
+You can also use the `right mouse button` to switch to Picture in Picture mode.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tests
+The entire website has been checked with tests written by Cypress. To view the test results, go to the **cypress folder** 
+and a video with test statistics can be found for each component.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Author Details
+The website was created by Danyil Butov. 
+[HJK - GitHub.](https://github.com/HJyup)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
