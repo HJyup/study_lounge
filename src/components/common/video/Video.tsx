@@ -8,9 +8,9 @@ interface VideoProps {
   hasControls: boolean;
 }
 const Video: React.FC<VideoProps> = ({ source, hasControls }) => {
+  const [playbackRate, setPlaybackRate] = React.useState(1);
   const hls = new Hls();
-  const videoEl = React.useRef(null);
-
+  const videoEl = React.useRef<HTMLVideoElement>(null);
   React.useEffect(() => {
     if (videoEl.current) {
       hls.attachMedia(videoEl.current);
@@ -19,11 +19,27 @@ const Video: React.FC<VideoProps> = ({ source, hasControls }) => {
       });
     }
   });
+  const handler = e => {
+    if (e.key === ',') {
+      setPlaybackRate(playbackRate - 0.2);
+    } else if (e.key === '.') {
+      setPlaybackRate(playbackRate + 0.2);
+    }
+  };
+
+  React.useEffect(() => {
+    videoEl.current.playbackRate = playbackRate;
+  }, [playbackRate]);
 
   return (
     <div className={styles['video']}>
       {hasControls ? (
-        <video ref={videoEl} controls className={styles['video']} />
+        <video
+          ref={videoEl}
+          controls
+          className={styles['video']}
+          onKeyPress={e => handler(e)}
+        />
       ) : (
         <video
           ref={videoEl}

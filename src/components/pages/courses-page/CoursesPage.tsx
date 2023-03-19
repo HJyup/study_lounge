@@ -42,7 +42,7 @@ const CoursesPage = () => {
         rating={course.rating}
         skills={course.meta.skills}
         tags={course.tags}
-        previewVideo={course.meta.courseVideoPreview.link}
+        previewVideo={course.meta?.courseVideoPreview?.link}
       />
     ));
   return (

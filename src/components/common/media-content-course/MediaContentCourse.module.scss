@@ -60,9 +60,18 @@
   font-size: 62px;
   font-weight: 700;
   color: #b4690e;
-  padding: 8px 0;
+  padding-top: 8px;
   .course-rating{
     font-size: 14px;
     margin: 8px;
+  }
+}
+
+@media screen and (max-width: 320px){
+  .course-information{
+    gap: 12px;
+    .rating{
+      font-size: 48px;
+    }
   }
 }
