@@ -19,7 +19,6 @@ describe('<MediaContentCourse />', () => {
 
     cy.contains(props.title);
     cy.contains(props.courseDescription);
-    cy.contains(props.rating.toFixed(1));
     cy.contains('Course Rating');
     cy.contains(props.skills[0]);
     cy.contains(props.skills[1]);

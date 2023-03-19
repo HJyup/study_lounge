@@ -10,14 +10,13 @@
 
 .title{
   font-size: 24px;
-  font-weight: 500;
-  margin: 8px 0;
+  font-weight: 700;
+  margin: 16px 0;
 }
 
 .description{
   font-weight: 300;
-  padding-bottom: 8px;
-  border-bottom: thin solid rgba(209,215,221);
+  padding-bottom: 16px;
 }
 
 .course-information{
@@ -53,21 +52,37 @@
   width: fit-content;
   flex-direction: column;
   align-items: center;
-  font-size: 62px;
-  font-weight: 700;
   color: #b4690e;
   padding-top: 8px;
+  font-size: 14px;
   .course-rating{
-    font-size: 14px;
     margin: 8px;
   }
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 425px){
   .course-information{
     gap: 12px;
     .rating{
-      font-size: 48px;
+      font-size: 12px;
+    }
+  }
+  .title{
+    font-size: 18px;
+  }
+  .description{
+    font-size: 16px;
+  }
+  .skills{
+    div{
+      margin: 4px;
+      font-size: 12px;
+    }
+  }
+  .date-and-status{
+    font-size: 12px;
+    .status{
+      font-size: 12px;
     }
   }
 }

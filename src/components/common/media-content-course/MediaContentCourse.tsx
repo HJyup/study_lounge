@@ -35,8 +35,7 @@ const MediaContentCourse: React.FC<MediaContentCourseProps> = ({
       <p className={styles['description']}>{courseDescription}</p>
       <div className={styles['course-information']}>
         <div className={styles['rating']}>
-          <div>{rating?.toFixed(1)}</div>
-          <Rating value={rating} precision={0.5} size="medium" readOnly />
+          <Rating value={rating} precision={0.5} size="large" readOnly />
           <div className={styles['course-rating']}>Course Rating</div>
         </div>
         <div className={styles['skills']}>
