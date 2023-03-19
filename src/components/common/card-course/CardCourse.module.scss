@@ -30,6 +30,15 @@
   }
 }
 
+.lessons-count{
+  margin: auto 12px 12px 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-weight: 200;
+  font-size: 12px;
+}
+
 .information{
   padding: 8px;
   .title{
@@ -37,6 +46,7 @@
     font-size: 18px;
     font-weight: bold;
     text-align: center;
+    align-items: center;
     justify-content: center;
     min-height: 65px;
   }
@@ -55,6 +65,9 @@
     font-size: 14px;
     margin: 12px;
     font-weight: 200;
+  }
+  .lessons{
+    margin-top: auto;
   }
 }
 
@@ -76,6 +89,7 @@
     padding: 12px;
     .title{
       font-size: 16px;
+      min-height: 32px;
     }
     .description{
       font-size: 11px;
@@ -89,7 +103,6 @@
     height: 25px;
     font-size: 8px;
   }
-
   .rating{
     width: 300px;
   }

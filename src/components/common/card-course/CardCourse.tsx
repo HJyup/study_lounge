@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Chip, Rating, Typography } from '@mui/material';
+import { Card, Chip, Rating } from '@mui/material';
 import Link from 'next/link';
 
 import Video from '@/components/common/video';
@@ -14,6 +14,7 @@ export interface CardCourseProps {
   description: string;
   skills: string[];
   previewVideo: string;
+  lessonsCount: number;
 }
 const CardCourse: React.FC<CardCourseProps> = ({
   image,
@@ -24,6 +25,7 @@ const CardCourse: React.FC<CardCourseProps> = ({
   description,
   skills,
   previewVideo,
+  lessonsCount,
 }) => {
   const [isVideo, setIsVideo] = useState(false);
   const handleMouseEnter = () => {
@@ -31,6 +33,7 @@ const CardCourse: React.FC<CardCourseProps> = ({
       return <Video source={previewVideo} hasControls={false} />;
     }
   };
+
   return (
     <Link href={`/course/${courseId}`} className={styles['link']}>
       <Card
@@ -45,9 +48,7 @@ const CardCourse: React.FC<CardCourseProps> = ({
         />
         <div className={styles['video']}>{handleMouseEnter()}</div>
         <div className={styles['information']}>
-          <Typography variant="subtitle1" className={styles['title']}>
-            {title}
-          </Typography>
+          <div className={styles['title']}>{title}</div>
           <div className={styles['tags']}>
             <Chip
               label={tags}
@@ -60,6 +61,7 @@ const CardCourse: React.FC<CardCourseProps> = ({
               value={rating}
               readOnly
               className={styles['rating']}
+              precision={0.5}
             />
           </div>
           <div className={styles['description']}>{description}</div>
@@ -69,6 +71,7 @@ const CardCourse: React.FC<CardCourseProps> = ({
             ))}
           </div>
         </div>
+        <div className={styles['lessons-count']}>Lessons: {lessonsCount}</div>
       </Card>
     </Link>
   );
