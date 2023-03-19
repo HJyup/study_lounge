@@ -9,6 +9,7 @@ import CardCourse from '@/components/common/card-course';
 import Navbar from '@/components/common/navbar';
 
 import styles from './CoursesPage.module.scss';
+
 const CoursesPage = () => {
   const [pagesCount, setPagesCount] = useState(0);
   const {
@@ -19,6 +20,7 @@ const CoursesPage = () => {
     retry: false,
     refetchOnWindowFocus: false,
   });
+
   const coursesPerElement = 10;
   const elementsVisited = pagesCount * coursesPerElement;
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -43,6 +45,7 @@ const CoursesPage = () => {
         skills={course.meta.skills}
         tags={course.tags}
         previewVideo={course.meta?.courseVideoPreview?.link}
+        lessonsCount={course.lessonsCount}
       />
     ));
   return (
@@ -50,7 +53,7 @@ const CoursesPage = () => {
       <Navbar />
       {isLoadingCourses && <CircularProgress />}
       {isErrorCourses ? (
-        <Alert variant="filled" severity="error">
+        <Alert variant="filled" severity="error" className={'alert-error'}>
           Finding problems with uploading data - Check later!
         </Alert>
       ) : (
